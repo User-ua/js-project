@@ -1,13 +1,11 @@
 export const getRandomInt = (min, max) => {
-    return Math.floor(Math.random() * max - min) + min
+    return Math.floor(min + Math.random() * max + 1 - min)
 }
 
-/*const getRandomFromArrey = () => {
-    return arrey[getRandomInt(0, arrey.length)]
+export const getRandomFromArray = (array) => {
+    return array[getRandomInt(0, array.length)]
 }
 
-export const getRandomTypeInt = () => {
-    for (let n = 0; n < getRandomInt(min, max); n++) {
-        randomFeatures.push(FEATURES[getRandomInt(min, max)])
-    }
-}*/
+export const randomFeatures = (FEATURES, min, max) => {
+    return [...FEATURES].splice(getRandomInt(min, max), getRandomInt(min, max))
+}
