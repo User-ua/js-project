@@ -1,30 +1,15 @@
 const pinsList = []
 const map = document.querySelector(".map")
 const pitTemplateMain = document.querySelector(".map__pin--main")
-
-export const renderPinsFromData = (pinsData) => {
-    const pitTemplate = document.querySelector("#pin")
-
-    pinsData.forEach((itemData, i) => {
-        const pinElement = pitTemplate.content.cloneNode(true).querySelector("button")
-
-        const pinLocation = pinElement.style = `left:${itemData.location.x}px; top:${itemData.location.y}px;`
-        
-        const img = pinElement.querySelector("img")
-        img.src = itemData.avatar
-        img.id =  Math.random()
-        pinsList.push(img)
-        map.appendChild(pinElement)   
-    })
-}
-
 const cardTemplate = document.querySelector("#card")
 
+
 const renderCard = (pinsData) => (e) => {
+    console.log(e);
     const article = map.querySelector("article")
 
     if (article) {
-        article.remove() 
+        article.remove()
     }
      
     for (let index = 0; index < pinsList.length; index++) {
@@ -74,10 +59,25 @@ const renderCard = (pinsData) => (e) => {
             }  
         }
     }
-}   
-
-export const pinsHandler = (pinsData, e) => {
-    map.addEventListener('click', renderCard(pinsData, e))
 }
+
+export const renderPinsFromData = (pinsData) => {
+    const pitTemplate = document.querySelector("#pin")
+
+    pinsData.forEach((itemData, i) => {
+        const pinElement = pitTemplate.content.cloneNode(true).querySelector("button")
+
+        pinElement.style = `left:${itemData.location.x}px; top:${itemData.location.y}px;`
+        
+        const img = pinElement.querySelector("img")
+        img.src = itemData.avatar
+        img.id =  Math.random()
+        pinsList.push(img)
+        map.appendChild(pinElement)   
+    })
+
+    map.addEventListener('click', renderCard(pinsData))
+}
+
 
 
