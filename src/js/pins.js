@@ -78,7 +78,6 @@ const renderCard = (pinsData) => (e) => {
 
 export const pinsHandler = (pinsData, e) => {
     map.addEventListener('click', renderCard(pinsData, e))
-    
 }
 
 
