@@ -5,7 +5,6 @@ const cardTemplate = document.querySelector("#card")
 
 
 const renderCard = (pinsData) => (e) => {
-    console.log(e);
     const article = map.querySelector("article")
 
     if (article) {

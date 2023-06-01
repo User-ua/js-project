@@ -28,7 +28,7 @@ export const generateMoks = () => {
             checkin: getRandomFromArray(CHECKTIME),
             checkout: getRandomFromArray(CHECKTIME),
             features: randomFeatures(FEATURES, min, max),
-            type: TYPE[getRandomInt(min, TYPE.length)],
+            type: TYPE[getRandomInt(min, TYPE.length - 1)],
             description: "Welcome!",
             location: {
                 x: getRandomInt(minLocation, maxLocation),
