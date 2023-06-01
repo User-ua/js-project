@@ -1,4 +1,3 @@
-
 const pinsList = []
 const map = document.querySelector(".map")
 const pitTemplateMain = document.querySelector(".map__pin--main")
@@ -13,75 +12,73 @@ export const renderPinsFromData = (pinsData) => {
         
         const img = pinElement.querySelector("img")
         img.src = itemData.avatar
-        const image = img.src
         img.id =  Math.random()
-
-        const titleData = itemData.title
-
-        const priseData = itemData.prise
-
-        const checkinData = itemData.checkin
-
-        const typeData = itemData.type
-
-        const featuresData = itemData.features
-
-        const pinElementData = {img, image, featuresData, typeData, checkinData, priseData, titleData, pinLocation}
-        pinsList.push(pinElementData)
-
-        map.appendChild(pinElement)
+        pinsList.push(img)
+        map.appendChild(pinElement)   
     })
-    
 }
-console.log(pinsList)
-const buttonArray = []
 
-export const renderPinsHandler = (e, pinsData) => {
-    const cardTemplate = document.querySelector("#card")
+const cardTemplate = document.querySelector("#card")
 
+const renderCard = (pinsData) => (e) => {
+    const article = map.querySelector("article")
+
+    if (article) {
+        article.remove() 
+    }
+     
     for (let index = 0; index < pinsList.length; index++) {
-       
-        if (e.target.id === pinsList[index].img.id) {
-
-            const delElement = pinsList[index].img.closest("button")
+        
+        if (e.target.id === pinsList[index].id) {
             
-            buttonArray.push(delElement)
-            delElement.remove()
-
-            const pinLocationMain = pitTemplateMain.style = pinsList[index].pinLocation
-
             const cardElement = cardTemplate.content.cloneNode(true)
+            const cardArticle = cardElement.querySelector("article")
 
             const img = cardElement.querySelector("img")
-            img.src = pinsList[index].image
-
+            img.src = pinsData[index].avatar
+            
             const title = cardElement.querySelector(".popup__title")
-            title.innerHTML = pinsList[index].titleData
+            title.textContent = pinsData[index].title
 
             const prise = cardElement.querySelector(".popup__text--price")
-            prise.innerHTML = pinsList[index].priseData
+            prise.textContent = pinsData[index].prise
 
             const type = cardElement.querySelector(".popup__type")
-            type.innerHTML = pinsList[index].typeData
+            type.textContent = pinsData[index].type
 
-            /*const features = cardElement.querySelector(".popup__features")
-            const li = features.querySelectorAll("li")
-            console.log(li.length)
-            for (let n = 0; n < li.length; n++) {
-                console.log(n)
-                li[n].innerHTML = pinsList[index].featuresData
-            }*/
+            const cardfeatures = cardElement.querySelector(".popup__features")
+            const features = pinsData[index].features
+
+            const questionGuestsAndRooms = cardElement.querySelector(".popup__text--capacity")
+            questionGuestsAndRooms.textContent = `${pinsData[index].rooms} комнаты для ${pinsData[index].guests} гостей`
+
+            const time = cardElement.querySelector(".popup__text--time")
+            time.textContent = `Заезд после ${pinsData[index].checkin}, выезд до ${pinsData[index].checkout}`
+
+            cardfeatures.innerHTML = " "
             
+            for (let n = 0; n < features.length; n++) {
+                const classLi = (`popup__feature--${features[n]}`)
+                const li = document.createElement("li")
+                li.classList.add("popup__feature", classLi);
+                cardfeatures.insertAdjacentElement(`afterend`, li);
+            }
+            
+            const clouseButton = cardElement.querySelector("button")    
+            clouseButton.addEventListener('click', removeHendler)    
+
             map.appendChild(cardElement)
+            
+            function removeHendler () {
+                cardArticle.remove()
+            }  
         }
     }
+}   
 
-    if (buttonArray.length > 1) {
-        map.insertAdjacentElement('afterbegin', buttonArray[0]);
-        buttonArray.shift()
-    }
+export const pinsHandler = (pinsData, e) => {
+    map.addEventListener('click', renderCard(pinsData, e))
+    
 }
 
-export const pinsHandler = (pinsData) => {
-    map.addEventListener('click', renderPinsHandler)
-}
+

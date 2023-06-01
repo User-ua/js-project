@@ -1,8 +1,7 @@
 import {getRandomInt, getRandomFromArray, randomFeatures} from "./utils.js"
-/*import getRandomFromArrey from "./utils.js"*/
 
 const mocks = []
-const FEATURES = ["wifi", "dashwasher", "parking", "washer", "elevator", "conditioner"]
+const FEATURES = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"]
 const TYPE = ["palace", "flat", "house", "bungalo"]
 const CHECKTIME = ["12:00", "13:00", "14:00"]
 const PRISE = ["500 USD", "800 USD", "1000 USD"]
