@@ -1,3 +1,5 @@
+import { PRICES, PRICE_LEVELS } from "./constants.js";
+
 export const filter = (pinsData) => {
     const config = getFilterConfig()
     let filteredPinsData = pinsData; 
@@ -6,23 +8,22 @@ export const filter = (pinsData) => {
     }
 
     if (!(config.price === "any")) {
-        if (config.price === String("low")) {
-            config.price = 10000 
-            filteredPinsData = filteredPinsData.filter((pin) => Number(pin.price) < config.price)   
-        }
-        if (config.price === "high") {
-            config.price = 50000
-            filteredPinsData = filteredPinsData.filter((pin) => Number(pin.price) > config.price )
-        }
-        if (config.price === "middle") {
-            let a = 10000
-            let b = 50000
-            filteredPinsData = filteredPinsData.filter((pin) => Number(pin.price) > a)
-            filteredPinsData = filteredPinsData.filter((pin) => Number(pin.price) < b)
-        }
-        
-        console.log(filteredPinsData)
+        switch(config.price) {
+            case PRICE_LEVELS.LOW:
+                filteredPinsData = filteredPinsData.filter((pin) => Number(pin.price) < PRICES[config.price])
+            case PRICE_LEVELS.HIGH: 
+                filteredPinsData = filteredPinsData.filter((pin) => {
+                    const n = Number(pin.price) 
+                    const r = n > PRICES[config.price]
+                    return r
+                } )
+            case PRICE_LEVELS.MIDDLE:
+                filteredPinsData = filteredPinsData.filter((pin) => Number(pin.price) > PRICES.low && Number(pin.price) < PRICES.high)
+        }   
+        console.log(filteredPinsData, config, pinsData);
     }
+
+
     if (!(config.rooms === "any")) {
         filteredPinsData = filteredPinsData.filter((pin) => pin.rooms === config.rooms)   
     }
@@ -45,13 +46,15 @@ export const filter = (pinsData) => {
             }
 
             if (config.features[n] === "parking") {
-                function getParking() {const array = []
+                const getParking = () => {
+                    const array = []
                     for (let i = 0; i < filteredPinsData.length; i++) {
-                        for (let k = 0; k < filteredPinsData[i].features.length; k++)
-                        if (filteredPinsData[i].features[k] === "parking") {
-                            console.log(filteredPinsData[i])
-                            array.push(filteredPinsData[i])
-                        }  
+                        for (let j = 0; j < filteredPinsData[i].features.length; j++) {
+                            if (filteredPinsData[i].features[j] === "parking") {
+                                console.log(filteredPinsData[i])
+                                array.push(filteredPinsData[i])
+                            }
+                        }
                     }
                     filteredPinsData = array
                     return filteredPinsData  
@@ -82,7 +85,7 @@ const getFilterConfig = () => {
         price: getValueFromNode('#housing-price'),
         rooms: getValueFromNode('#housing-rooms'),
         guests: getValueFromNode('#housing-guests'),
-        features: getValueWhanSelected()
+        features: getValueWhenSelected()
     }
 }
 
@@ -90,7 +93,7 @@ const getValueFromNode = (selector) => {
     return document.querySelector(selector)?.value
 }
 
-const getValueWhanSelected = () => {
+const getValueWhenSelected = () => {
     const fieldset = document.querySelector(".map__features")
     const valueList = fieldset.querySelectorAll("input")
     const getValueList = []

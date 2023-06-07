@@ -57,12 +57,7 @@ const renderCard = (pinsData) => {
 
 export const renderPinsFromData = (pinsData) => {
     const pitTemplate = document.querySelector("#pin")
-    const buttonNode = document.querySelectorAll(".map__pin")
-    
-        for (let n = 0; n < buttonNode.length; n++) {
-            buttonNode[n].remove()
-        }  
-    
+    const buttonNode = document.querySelectorAll(".map__pin")   
 
     pinsData.forEach((itemData, i) => {
         const pinElement = pitTemplate.content.cloneNode(true).querySelector("button")
