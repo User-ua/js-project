@@ -4,7 +4,6 @@ import { renderPinsFromData } from "./pins.js"
 
 export const app = () => {
     let data = generateMoks()
-
     filtersHandler(data)
 }
 
@@ -14,8 +13,6 @@ const filtersHandler = (data) => {
         const filtered = filter(data)
         renderPinsFromData(filtered)
     })
-
     const filtered = filter(data)
-    renderPinsFromData(filtered)
-
+    renderPinsFromData(filtered)  
 }

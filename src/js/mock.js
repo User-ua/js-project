@@ -4,7 +4,7 @@ const mocks = []
 const FEATURES = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"]
 const TYPE = ["palace", "flat", "house", "bungalo"]
 const CHECKTIME = ["12:00", "13:00", "14:00"]
-const PRISE = ["500 USD", "800 USD", "1000 USD"]
+const PRISE = [5000, 20000, 55000]
 
 export const generateMoks = () => {
     
@@ -22,8 +22,8 @@ export const generateMoks = () => {
             author: 0 + i,
             avatar: `img/avatars/user0${i + 1}.png`,
             title: "Apartment with all amenities",
-            prise: getRandomFromArray(PRISE),
-            rooms: getRandomInt(minType, maxType),
+            price: `${getRandomFromArray(PRISE)}`,
+            rooms: `${getRandomInt(minType, maxType)}`,
             guests: getRandomInt(minType, maxType),
             checkin: getRandomFromArray(CHECKTIME),
             checkout: getRandomFromArray(CHECKTIME),
