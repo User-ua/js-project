@@ -1,5 +1,5 @@
 import { PRICES, PRICE_LEVELS } from "./constants.js";
-import { getfeatur, getSelectedValue } from "./utils.js"
+import { getFeature, getSelectedValue } from "./utils.js"
 
 export const filter = (pinsData) => {
     const config = getFilterConfig()
@@ -41,27 +41,27 @@ export const filter = (pinsData) => {
         for (let n = 0; n < config.features.length; n++) {
             console.log(n)
             if (config.features[n] === "wifi") {
-                filteredPinsData = getfeatur(config.features[n], filteredPinsData)
+                filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
 
             if (config.features[n] === "dishwasher") {
-                filteredPinsData = getfeatur(config.features[n], filteredPinsData)
+                filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
 
             if (config.features[n] === "parking") {
-                filteredPinsData = getfeatur(config.features[n], filteredPinsData)
+                filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
 
             if (config.features[n] === "washer") {
-                filteredPinsData = getfeatur(config.features[n], filteredPinsData)
+                filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
 
             if (config.features[n] === "elevator") {
-                filteredPinsData = getfeatur(config.features[n], filteredPinsData)
+                filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
 
             if (config.features[n] === "conditioner") {
-                filteredPinsData = getfeatur(config.features[n], filteredPinsData)
+                filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
         }
     }
@@ -80,7 +80,7 @@ const getFilterConfig = () => {
 }
 
 const getValueFromNode = (selector) => {
-    return document.querySelector(selector)?.value
+    return document.querySelector(selector)?.value // ютилс
 }
 
 

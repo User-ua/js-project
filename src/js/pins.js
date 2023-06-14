@@ -48,7 +48,7 @@ const renderCard = (pinsData) => {
     clouseButton.addEventListener('click', removeHendler)*
     map.appendChild(cardElement)
     
-    function removeHendler () {
+    function removeHendler () { // через переменную
         cardArticle.remove()
     }     
 }
@@ -63,22 +63,23 @@ export const renderPinsFromData = (pinsData) => {
     }  
     pinsData.forEach((itemData, i) => {
         const pinElement = pitTemplate.content.cloneNode(true).querySelector("button")
-
         pinElement.style = `left:${itemData.location.x}px; top:${itemData.location.y}px;`
         
         const img = pinElement.querySelector("img")
         img.src = itemData.avatar
+        
         const getRandomId = Math.random()
         img.id =  getRandomId
         itemData.id = getRandomId
+
         map.appendChild(pinElement)     
     })
-    map.addEventListener('click', clickHandler(pinsData))
+    map.addEventListener('click', clickHandler(pinsData)) // itemData
 }
 
 const clickHandler = (pinsData) => (e) => {
-    for (let n = 0; n < pinsData.length; n++) {
-        if (pinsData[n].id === Number(e.target.id)) {
+    for (let n = 0; n < pinsData.length; n++) { // no for
+        if (pinsData[n].id === Number(e.target.id)) { 
             renderCard(pinsData[n])
         }
     }

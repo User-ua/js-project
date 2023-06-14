@@ -1,11 +1,14 @@
 import { filter } from "./filters.js"
-import { generateMoks } from "./mock.js"
+import { getData } from "./mock.js"
 import { renderPinsFromData } from "./pins.js"
 import { handleMainPin } from "./nav.js"
 
-export const app = () => {
-    let data = generateMoks()
+export const app = async () => {
+    let data = await getData()
     filtersHandler(data)
+
+    // fetch
+    // обработка ошибок
 }
 
 const filtersHandler = (data) => {

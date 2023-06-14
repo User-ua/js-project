@@ -4,11 +4,11 @@ const mocks = []
 const FEATURES = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"]
 const TYPE = ["palace", "flat", "house", "bungalo"]
 const CHECKTIME = ["12:00", "13:00", "14:00"]
-const PRISE = [5000, 20000, 55000]
+const PRISE = [5000, 20000, 55000] // константы
 
-export const generateMoks = () => {
+export const getData = async () => {
     
-    const min = 0
+    const min = 0 // константы
     const max = 6
     const minType = 1
     const maxType = 3
@@ -36,6 +36,6 @@ export const generateMoks = () => {
             }
         })  
     }
-    return mocks
+    return Promise.resolve(mocks)
 }
 
