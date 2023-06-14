@@ -14,7 +14,7 @@ export const generateMoks = () => {
     const maxType = 3
     const amount = 8
     const minLocation = 130
-    const maxLocation = 630    
+    const maxLocation = 530    
     
     for (let i = 0; i < amount; i++) {
         
@@ -22,8 +22,8 @@ export const generateMoks = () => {
             author: 0 + i,
             avatar: `img/avatars/user0${i + 1}.png`,
             title: "Apartment with all amenities",
-            price: `${getRandomFromArray(PRISE)}`,
-            rooms: `${getRandomInt(minType, maxType)}`,
+            price: getRandomFromArray(PRISE),
+            rooms: getRandomInt(minType, maxType),
             guests: getRandomInt(minType, maxType),
             checkin: getRandomFromArray(CHECKTIME),
             checkout: getRandomFromArray(CHECKTIME),

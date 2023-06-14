@@ -1,6 +1,7 @@
 import { filter } from "./filters.js"
 import { generateMoks } from "./mock.js"
 import { renderPinsFromData } from "./pins.js"
+import { handleMainPin } from "./nav.js"
 
 export const app = () => {
     let data = generateMoks()
@@ -16,3 +17,6 @@ const filtersHandler = (data) => {
     const filtered = filter(data)
     renderPinsFromData(filtered)  
 }
+
+handleMainPin()
+
