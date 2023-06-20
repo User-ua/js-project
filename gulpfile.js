@@ -1,5 +1,3 @@
-/*import fs from "fs";*/
-/*import path from "path";*/
 const buildFolder = "./build";
 const srcFolder = "./src";
 
@@ -71,6 +69,12 @@ const image = () => {
     .pipe(browserSync.stream())
 }
 
+const ico = () => {
+    return gulp.src("src/favicon.ico")
+    .pipe(gulp.dest('build/img'))
+    .pipe(browserSync.stream())
+}
+
 const fonts = () => {
     return gulp.src("src/fonts/*.{woff,woff2}")
     .pipe(gulp.dest('build/fonts/'))
@@ -78,7 +82,7 @@ const fonts = () => {
 }
 
 
-const mineTasks = gulp.parallel(copy, html, fonts, scss, js, image);
+const mineTasks = gulp.parallel(copy, html, fonts, scss, js, image, ico);
 const dev = gulp.series(reset, mineTasks, gulp.parallel(watcher, server));
 
 gulp.task('default', dev)

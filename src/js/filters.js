@@ -1,5 +1,5 @@
-import { PRICES, PRICE_LEVELS } from "./constants.js";
-import { getFeature, getSelectedValue } from "./utils.js"
+import { PRICES, PRICE_LEVELS } from "./constants.js"
+import { getFeature, getSelectedValue, getValueFromNode } from "./utils.js"
 
 export const filter = (pinsData) => {
     const config = getFilterConfig()
@@ -26,20 +26,15 @@ export const filter = (pinsData) => {
     }
 
     if (!(config.rooms === "any")) {
-        console.log(pinsData.rooms)
         filteredPinsData = filteredPinsData.filter((pin) => Number(pin.rooms) === Number(config.rooms)) 
     }
 
     if (!(config.guests === "any")) {
-        console.log(Number(pinsData.guests))
         filteredPinsData = filteredPinsData.filter((pin) => Number(pin.guests) === Number(config.guests))   
     }
 
     if (config.features) {
-        console.log(config.features)
-        console.log(filteredPinsData)
         for (let n = 0; n < config.features.length; n++) {
-            console.log(n)
             if (config.features[n] === "wifi") {
                 filteredPinsData = getFeature(config.features[n], filteredPinsData)
             }
@@ -78,9 +73,3 @@ const getFilterConfig = () => {
         features: getSelectedValue()
     }
 }
-
-const getValueFromNode = (selector) => {
-    return document.querySelector(selector)?.value // ютилс
-}
-
-

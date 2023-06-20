@@ -1,21 +1,21 @@
 const map = document.querySelector(".map")
-const pitTemplateMain = document.querySelector(".map__pin--main")
 const cardTemplate = document.querySelector("#card")
-
 
 const renderCard = (pinsData) => {
     const article = map.querySelector("article")
-    /*if ((e.target.className === "map__filter") || (e.target.className === "map__top-type")) {
-        article.remove()
-    }*/
+   
     if (article) {
         article.remove()
     }
+
     const cardElement = cardTemplate.content.cloneNode(true)
     const cardArticle = cardElement.querySelector("article")
     
     const img = cardElement.querySelector("img")
     img.src = pinsData.avatar
+
+    const photo = cardElement.querySelector(".popup__photo")
+    photo.src = pinsData.photo
     
     const title = cardElement.querySelector(".popup__title")
     title.textContent = pinsData.title
@@ -45,12 +45,10 @@ const renderCard = (pinsData) => {
     }
     
     const clouseButton = cardElement.querySelector("button")    
-    clouseButton.addEventListener('click', removeHendler)*
-    map.appendChild(cardElement)
-    
-    function removeHendler () { // через переменную
-        cardArticle.remove()
-    }     
+    clouseButton.addEventListener('click', () => {cardArticle.remove()
+    })
+
+    map.appendChild(cardElement)    
 }
 
 export const renderPinsFromData = (pinsData) => {
@@ -67,23 +65,11 @@ export const renderPinsFromData = (pinsData) => {
         
         const img = pinElement.querySelector("img")
         img.src = itemData.avatar
-        
-        const getRandomId = Math.random()
-        img.id =  getRandomId
-        itemData.id = getRandomId
 
-        map.appendChild(pinElement)     
+        pinElement.addEventListener('click', () => {
+            renderCard(itemData)
+            }
+        )
+        map.appendChild(pinElement)      
     })
-    map.addEventListener('click', clickHandler(pinsData)) // itemData
 }
-
-const clickHandler = (pinsData) => (e) => {
-    for (let n = 0; n < pinsData.length; n++) { // no for
-        if (pinsData[n].id === Number(e.target.id)) { 
-            renderCard(pinsData[n])
-        }
-    }
-}
-
-
-

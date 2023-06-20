@@ -1,25 +1,15 @@
-import {getRandomInt, getRandomFromArray, randomFeatures} from "./utils.js"
-
+import { getRandomInt, getRandomFromArray, randomFeatures } from "./utils.js"
+import { TYPE, CHECKTIME, PRISE, FEATURES, min, max, minType, maxType, amount, minLocation, maxLocation} from "./constants.js";
+ 
 const mocks = []
-const FEATURES = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"]
-const TYPE = ["palace", "flat", "house", "bungalo"]
-const CHECKTIME = ["12:00", "13:00", "14:00"]
-const PRISE = [5000, 20000, 55000] // константы
 
-export const getData = async () => {
-    
-    const min = 0 // константы
-    const max = 6
-    const minType = 1
-    const maxType = 3
-    const amount = 8
-    const minLocation = 130
-    const maxLocation = 530    
+export const getData = () => {   
     
     for (let i = 0; i < amount; i++) {
         
         mocks.push({
             author: 0 + i,
+            photo: `img/photo/photo0${i + 1}.jpg`,
             avatar: `img/avatars/user0${i + 1}.png`,
             title: "Apartment with all amenities",
             price: getRandomFromArray(PRISE),
@@ -36,6 +26,7 @@ export const getData = async () => {
             }
         })  
     }
-    return Promise.resolve(mocks)
+    //return Promise.resolve(mocks)
+    return mocks
 }
 

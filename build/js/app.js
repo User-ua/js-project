@@ -7,8 +7,13 @@ export const app = async () => {
     let data = await getData()
     filtersHandler(data)
 
-    // fetch
-    // обработка ошибок
+    const response = await fetch(`http://localhost:3030/pins`)
+
+    if (response.ok) {  
+        const content = await response.json()
+        console.log(content) } 
+        else { alert("Ошибка HTTP: " + response.status); 
+    }
 }
 
 const filtersHandler = (data) => {
@@ -22,4 +27,3 @@ const filtersHandler = (data) => {
 }
 
 handleMainPin()
-
