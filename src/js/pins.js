@@ -58,7 +58,8 @@ export const renderPinsFromData = (pinsData) => {
         if (!(buttonNode[n].classList.contains('map__pin--main'))) {
             buttonNode[n].remove()
         } 
-    }  
+    } 
+    
     pinsData.forEach((itemData, i) => {
         const pinElement = pitTemplate.content.cloneNode(true).querySelector("button")
         pinElement.style = `left:${itemData.location.x}px; top:${itemData.location.y}px;`
