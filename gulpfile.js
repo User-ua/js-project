@@ -10,7 +10,7 @@ import htmlmin from "gulp-htmlmin";
 import rename from "gulp-rename";
 
 const browserSync = bsCreate();
-const  sass  =  gulpSass ( dartSass ) ;
+const sass = gulpSass ( dartSass ) ;
 
 const copy = () => {
     return gulp.src('src/files/*.*')
