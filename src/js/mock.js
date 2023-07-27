@@ -1,12 +1,11 @@
 import { getRandomInt, getRandomFromArray, randomFeatures } from "./utils.js"
 import { TYPE, CHECKTIME, PRISE, FEATURES, min, max, minType, maxType, amount, minLocation, maxLocation} from "./constants.js";
- 
-const mocks = []
 
-export const getData = () => {   
-    
+
+export const getData = () => {  
+    const mocks = [] 
     for (let i = 0; i < amount; i++) {
-        
+
         mocks.push({
             author: 0 + i,
             photo: `img/photo/photo0${i + 1}.jpg`,

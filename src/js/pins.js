@@ -58,7 +58,7 @@ export const renderPinsFromData = (pinsData) => {
         if (!(buttonNode[n].classList.contains('map__pin--main'))) {
             buttonNode[n].remove()
         } 
-    } 
+    }
     
     pinsData.forEach((itemData, i) => {
         const pinElement = pitTemplate.content.cloneNode(true).querySelector("button")
@@ -71,6 +71,7 @@ export const renderPinsFromData = (pinsData) => {
             renderCard(itemData)
             }
         )
+        
         map.appendChild(pinElement)      
     })
 }

@@ -1,4 +1,4 @@
-import { errorMassage } from "./error.js"
+/*import { errorMassage } from "./error.js"
 import { handlerMainPin } from "./nav.js"
 
 export const fetchData = async() => {
@@ -13,4 +13,4 @@ export const fetchData = async() => {
 
     return handlerMainPin(response)
 }
-
+*/

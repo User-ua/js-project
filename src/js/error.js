@@ -1,4 +1,4 @@
-export const errorMassage = (response) => {
+/*export const errorMassage = (response) => {
     const errorTemplate = document.querySelector("#error")
     const map = document.querySelector(".map")
     
@@ -9,4 +9,4 @@ export const errorMassage = (response) => {
     map.appendChild(templateRander)
     
     console.log("Ошибка HTTP: " + response.status)
-} 
+} */
