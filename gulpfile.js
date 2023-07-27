@@ -86,3 +86,11 @@ const mineTasks = gulp.parallel(copy, html, fonts, scss, js, image, ico);
 const dev = gulp.series(reset, mineTasks, gulp.parallel(watcher, server));
 
 gulp.task('default', dev)
+
+const gulp = require('gulp');
+const ghPages = require('gulp-gh-pages');
+
+gulp.task('deploy', function() {
+  return gulp.src('./build/**/*')
+    .pipe(ghPages());
+});
